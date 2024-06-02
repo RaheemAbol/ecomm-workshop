@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}" />
+</head>
+<body>
+<div class="container">
+    <h2>Profile</h2>
+    <div>
+        <p>Name: <span th:text="${user.name}"></span></p>
+        <p>Email: <span th:text="${user.email}"></span></p>
+        <p>Phone: <span th:text="${user.tel}"></span></p>
+        <p>Refer: <span th:text="${user.refer}"></span></p>
+        <p>Contact Method: <span th:text="${user.contact}"></span></p>
+        <p>Terms Agreed: <span th:text="${user.terms ? 'Yes' : 'No'}"></span></p>
+    </div>
+    <a th:href="@{/cart}">View Cart</a>
+    <a th:href="@{/users/edit/{id}(id=${user.id})}">Edit Profile</a>
+</div>
+</body>
+</html>

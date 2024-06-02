@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>View Cart</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}" />
+</head>
+<body>
+<div class="container">
+    <h2>Cart for User <span th:text="${user.name}"></span></h2>
+    <table>
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="item : ${cartItems}">
+            <td th:text="${item.name}"></td>
+            <td th:text="${item.description}"></td>
+            <td th:text="${item.price}"></td>
+            <td>
+                <form id="deleteForm" th:action="@{/cart/delete/{id}(id=${item.id})}" method="post" style="display:inline;">
+                    <input type="hidden" name="_method" value="delete" />
+                    <button type="submit">Delete</button>
+                </form>
+                |
+                <a id="view-cart" th:href="@{/cart/edit/{id}(id=${item.id})}">Edit</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/cart/addItem/{userId}(userId=${user.id})}">Add Item</a>
+    <br>
+    <a th:href="@{/cart/print/{userId}(userId=${user.id})}">Print Cart</a>
+    <br>
+    <br>
+    <a th:href="@{/users/all}">Back to Profile</a>
+</div>
+</body>
+</html>

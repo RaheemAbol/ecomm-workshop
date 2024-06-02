@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>All Users</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}" />
+</head>
+<body>
+<nav class="navbar">
+    <div class="navbar-container">
+        <a class="navbar-brand" href="#">Shop with me</a>
+        <div class="navbar-links">
+            <a class="nav-link" th:href="@{/users/register}">Register New User</a>
+            <a class="nav-link" th:href="@{/upload}">Upload File</a>
+            <a class="nav-link" th:href="@{/logout}">Logout</a>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <h2>All Users</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Refer</th>
+            <th>Contact Method</th>
+            <th>Terms Agreed</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user : ${users}">
+            <td th:text="${user.name}"></td>
+            <td th:text="${user.email}"></td>
+            <td th:text="${user.tel}"></td>
+            <td th:text="${user.refer}"></td>
+            <td th:text="${user.contact}"></td>
+            <td th:text="${user.terms ? 'Yes' : 'No'}"></td>
+            <td>
+                <a id="view-cart" th:href="@{/cart/{userId}(userId=${user.id})}">View Cart</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
